@@ -25,7 +25,7 @@ namespace Sandbox_Program
 
         async Task Loadss()
         {
-            //_ = await _Services.GetLanguagesAsync();
+            _ = await _Services.SubmitCodeAsync();
         }
     }
 }
