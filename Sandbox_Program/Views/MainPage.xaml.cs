@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
+using Sandbox_Program.Models;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Sandbox_Program
@@ -25,7 +26,8 @@ namespace Sandbox_Program
 
         async Task Loadss()
         {
-            _ = await _Services.SubmitCodeAsync();
+            TestModel testModel = JsonConvert.DeserializeObject<TestModel>(await _Services.SubmitCodeAsync("print 'Hello World'"));// write code 
+            _ = _Services.GetStatusAsync(testModel.he_id);
         }
     }
 }
