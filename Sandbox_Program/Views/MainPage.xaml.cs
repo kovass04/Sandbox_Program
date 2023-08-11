@@ -26,8 +26,9 @@ namespace Sandbox_Program
 
         async Task Loadss()
         {
-            TestModel testModel = JsonConvert.DeserializeObject<TestModel>(await _Services.SubmitCodeAsync("print 'Hello World'"));// write code 
-            _ = _Services.GetStatusAsync(testModel.he_id);
+            PostModel postModel = JsonConvert.DeserializeObject<PostModel>(await _Services.PostCodeAsync("print 'Hello World'"));// write code 
+            StatusModel statusModel = JsonConvert.DeserializeObject<StatusModel>(await _Services.GetStatusAsync(postModel.he_id));
+            _ = _Services.GetResultAsync(statusModel.result.run_status.output);
         }
     }
 }

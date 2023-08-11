@@ -6,10 +6,16 @@ using System.IO;
 
 namespace Sandbox_Program.Services
 {
-
+    /// <summary>
+    /// A service class for interacting with the HackerEarth code evaluation API.
+    /// </summary>
     public class DataService
     {
         private readonly HttpClient _httpClient;
+
+        /// <summary>
+        /// Initializes a new instance of the DataService class with the base API address.
+        /// </summary>
         public DataService()
         {
             _httpClient = new HttpClient();
@@ -21,7 +27,7 @@ namespace Sandbox_Program.Services
         /// </summary>
         /// <param name="code">The code to be submitted for evaluation.</param>
         /// <returns>A string containing the response body received from the API.</returns>
-        public async Task<string> SubmitCodeAsync(string code)
+        public async Task<string> PostCodeAsync(string code)
         {
             try
             {
@@ -52,7 +58,6 @@ namespace Sandbox_Program.Services
 
                     // Read and return the response body from the API
                     var body = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine(body);
 
                     return body;
                 }
@@ -67,32 +72,58 @@ namespace Sandbox_Program.Services
             }
         }
 
+        /// <summary>
+        /// Retrieves the status of a submitted code evaluation based on the provided `he_id`.
+        /// </summary>
+        /// <param name="he_id">The unique identifier (he_id) associated with the submitted code evaluation.</param>
+        /// <returns>A string containing the response body received from the API, representing the evaluation status.</returns>
         public async Task<string> GetStatusAsync(string he_id) 
         {
-
-            _httpClient.DefaultRequestHeaders.Add("client-secret", ReadKeyFromFile());
-
-            var request = new HttpRequestMessage
+            try
             {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri (_httpClient.BaseAddress + he_id),
-                Headers =
+                // Create an HTTP request message for retrieving the evaluation status
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(_httpClient.BaseAddress + he_id),
+                    Headers =
                 {
                     // Set the client-secret header using the key read from the file
                     { "client-secret", $"{ReadKeyFromFile()}" },
                 }
-            };
+                };
 
-            using (var response = await _httpClient.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
+                using (var response = await _httpClient.SendAsync(request))
+                {
+                    response.EnsureSuccessStatusCode();
 
-                // Read and return the response body from the API
-                var body = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(body);
+                    // Read and return the response body from the API
+                    var body = await response.Content.ReadAsStringAsync();
 
-                return body;
+                    return body;
+                }
             }
+            catch (Exception ex)
+            {
+                // If an exception occurs during the request, catch the exception and display an error message
+                Console.WriteLine("Error retrieving status: " + ex.Message);
+
+                // Return an empty string to indicate an error
+                return string.Empty;
+            }
+        }
+
+        public async Task<string> GetResultAsync(string url) 
+        {
+            string content = null;
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                content = await response.Content.ReadAsStringAsync();
+                
+            }
+            return content;
         }
 
         /// <summary>
