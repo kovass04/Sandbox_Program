@@ -113,17 +113,36 @@ namespace Sandbox_Program.Services
             }
         }
 
+        /// <summary>
+        /// Retrieves the content from a specified URL using an HTTP GET request.
+        /// </summary>
+        /// <param name="url">The URL to send the GET request to.</param>
+        /// <returns>A string containing the content received from the specified URL. Returns null if the request is not successful.</returns>
         public async Task<string> GetResultAsync(string url) 
         {
-            string content = null;
-            HttpResponseMessage response = await _httpClient.GetAsync(url);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                content = await response.Content.ReadAsStringAsync();
-                
+                string content = null;
+
+                // Send an HTTP GET request to the specified URL
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Read the content of the response into a string
+                    content = await response.Content.ReadAsStringAsync();
+                }
+                // Return the retrieved content or null if the request is not successful
+                return content;
             }
-            return content;
+            catch (Exception ex)
+            {
+                // If an exception occurs during the request, catch the exception and display an error message
+                Console.WriteLine("Error retrieving content: " + ex.Message);
+
+                // Return null to indicate an error
+                return null;
+            }
         }
 
         /// <summary>

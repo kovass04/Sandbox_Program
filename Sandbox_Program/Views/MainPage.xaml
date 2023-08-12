@@ -5,10 +5,33 @@
     xmlns:local="using:Sandbox_Program"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="173*"/>
+            <ColumnDefinition Width="327*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="500"/>
+        </Grid.RowDefinitions>
+        <Hub x:Uid = "HubControl" Header = "Localization Demo"/>
+        <ToggleSwitch x:Uid = "themeSwitch" x:Name="Toggle" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" OffContent="Dark" OnContent="Light" Toggled="ToggleSwitch_OnToggled" />
+
+        <TextBox Text="{Binding NoteText, Mode=TwoWay}" FontSize="32"
+                     PlaceholderText="Type your code here..."  TextWrapping="Wrap" IsTabStop="True" IsTapEnabled="True"
+                 Margin="5,5,5,-147" Grid.Row="1" Grid.Column="1"/>
+        <TextBlock x:Name="yourTask" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Text" VerticalAlignment="Top" Height="922" Width="507"/>
+        <Button Command="{Binding SendCommand}" Content="Send"  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,11,-207" Width="144"/>
+        <TextBlock Text="{Binding OutputText}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,215,-207" Width="727" Height="34"/>
 
     </Grid>
 </Page>
