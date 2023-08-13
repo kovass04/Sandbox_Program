@@ -19,25 +19,11 @@ namespace Sandbox_Program
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        //private readonly DataService _Services;
-        private MainPageViewModel _viewModel; //TODO fix it
         public MainPage()
         {
             this.InitializeComponent();
-            _viewModel = new MainPageViewModel();
-            DataContext = _viewModel;
-
-
-            //_Services = new DataService();
-            //_ = Loadss();
+            DataContext = new MainPageViewModel();//TODO fix it
         }
-
-        /*async Task Loadss()
-        {
-            PostModel postModel = JsonConvert.DeserializeObject<PostModel>(await _Services.PostCodeAsync("print 'Hello World'"));// write code 
-            StatusModel statusModel = JsonConvert.DeserializeObject<StatusModel>(await _Services.GetStatusAsync(postModel.he_id));
-            _ = _Services.GetResultAsync(statusModel.result.run_status.output);
-        }*/
         private void ToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
         {
             RequestedTheme = Toggle.IsOn
