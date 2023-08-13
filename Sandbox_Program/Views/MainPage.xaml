@@ -27,13 +27,13 @@
         <Hub x:Uid = "HubControl" Header = "Localization Demo"/>
         <controls:NumberBox HorizontalAlignment="Left"  VerticalAlignment="Center"
                    Header="Enter time limit:" 
-                   Value="5" 
+                   Value="{Binding TimeLimit, Mode=TwoWay}"
                    SpinButtonPlacementMode="Compact" 
                    SmallChange="1"
                    LargeChange="1"  Margin="9,0,0,0" Grid.Column="1"/>
         <controls:NumberBox HorizontalAlignment="Left"  VerticalAlignment="Center"
                    Header="Enter memory limit:" 
-                   Value="262144 " 
+                   Value="{Binding MemoryLimit, Mode=TwoWay}"
                    SpinButtonPlacementMode="Compact" 
                    SmallChange="1024"
                    LargeChange="1024"  Margin="148,0,0,0" Grid.Column="1" Width="131"/>

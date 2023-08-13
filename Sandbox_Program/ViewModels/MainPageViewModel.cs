@@ -116,10 +116,19 @@ namespace Sandbox_Program.ViewModels
             set { SetProperty(ref _selectedOption, value); }
         }
 
+        private int _memoryLimit;
+        public int MemoryLimit
+        {
+            get { return _memoryLimit; }
+            set { SetProperty(ref _memoryLimit, value); }
+        }
 
-
-
-
+        private int _timeLimit;
+        public int TimeLimit 
+        {
+            get { return _timeLimit; }
+            set { SetProperty(ref _timeLimit, value); }
+        }
 
 
 
@@ -130,7 +139,7 @@ namespace Sandbox_Program.ViewModels
 
         private async void ExecuteSendCommand()
         {
-            PostModel postModel = JsonConvert.DeserializeObject<PostModel>(await _Services.PostCodeAsync(NoteText, SelectedOption)); //TODO else function
+            PostModel postModel = JsonConvert.DeserializeObject<PostModel>(await _Services.PostCodeAsync(NoteText, SelectedOption, MemoryLimit, TimeLimit)); //TODO else function
             StatusModel statusModel = JsonConvert.DeserializeObject<StatusModel>(await _Services.GetStatusAsync(postModel.he_id));
             OutputText = await _Services.GetResultAsync(statusModel.result.run_status.output);
             

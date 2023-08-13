@@ -27,7 +27,7 @@ namespace Sandbox_Program.Services
         /// </summary>
         /// <param name="code">The code to be submitted for evaluation.</param>
         /// <returns>A string containing the response body received from the API.</returns>
-        public async Task<string> PostCodeAsync(string code, string lang)
+        public async Task<string> PostCodeAsync(string code, string lang, int memory_limit, int time_limit)
         {
             try
             {
@@ -43,11 +43,10 @@ namespace Sandbox_Program.Services
                 },
                     Content = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
-                    { "lang", lang }, // TODO Switching of programming language.
+                    { "lang", lang },
                     { "source", code },
-                    { "context", "1" }, // TODO maybe I can delete this 
-                    { "time_limit", "5" }, // TODO Setting a runtime limit.
-                    { "memory_limit", "262144" }, // TODO Setting a memory limit
+                    { "time_limit", $"{time_limit}" },
+                    { "memory_limit", $"{memory_limit}" },
                     { "input", "" }, // TODO optional
                     { "callback","https://client.com/callback/" }
                 }),
