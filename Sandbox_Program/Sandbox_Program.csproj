@@ -119,7 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\LanguageOption.cs" />
     <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\Problem.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\TestModel.cs" />
     <Compile Include="Services\DataService.cs" />
