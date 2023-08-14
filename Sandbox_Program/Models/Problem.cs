@@ -11,7 +11,6 @@ namespace Sandbox_Program.Models
         public string SampleOutput { get; set; }
         public string SampleInput { get; set; }
         public string Detail { get; set; }
-
         public string Name { get; set; }
     }
 }

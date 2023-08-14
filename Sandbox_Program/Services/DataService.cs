@@ -27,7 +27,7 @@ namespace Sandbox_Program.Services
         /// </summary>
         /// <param name="code">The code to be submitted for evaluation.</param>
         /// <returns>A string containing the response body received from the API.</returns>
-        public async Task<string> PostCodeAsync(string code, string lang, int memory_limit, int time_limit)
+        public async Task<string> PostCodeAsync(string code, string lang, int memory_limit, int time_limit, string input)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace Sandbox_Program.Services
                     { "source", code },
                     { "time_limit", $"{time_limit}" },
                     { "memory_limit", $"{memory_limit}" },
-                    { "input", "" }, // TODO optional
+                    { "input", input },
                     { "callback","https://client.com/callback/" }
                 }),
                 };
