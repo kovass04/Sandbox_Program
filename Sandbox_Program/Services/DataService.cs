@@ -12,21 +12,30 @@ namespace Sandbox_Program.Services
     public class DataService
     {
         private readonly HttpClient _httpClient;
-
+        private const string BaseApiUrl = "https://api.hackerearth.com/v4/partner/code-evaluation/submissions/";
         /// <summary>
         /// Initializes a new instance of the DataService class with the base API address.
         /// </summary>
         public DataService()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("https://api.hackerearth.com/v4/partner/code-evaluation/submissions/");
+            _httpClient.BaseAddress = new Uri(BaseApiUrl);
         }
 
         /// <summary>
-        /// Submits provided code for evaluation to a specified API endpoint.
+        /// Submits code to the remote API for execution and returns the result.
         /// </summary>
-        /// <param name="code">The code to be submitted for evaluation.</param>
-        /// <returns>A string containing the response body received from the API.</returns>
+        /// <param name="code">The source code to be executed.</param>
+        /// <param name="lang">The programming language of the source code.</param>
+        /// <param name="memory_limit">The memory limit for code execution.</param>
+        /// <param name="time_limit">The time limit for code execution.</param>
+        /// <param name="input">The input data for the code execution.</param>
+        /// <returns>The result of the code execution as a string.</returns>
+        /// <remarks>
+        /// This method sends a POST request to the remote API to execute the provided code
+        /// using the specified programming language, memory limit, time limit, and input data.
+        /// It returns the result of the code execution or an empty string in case of an error.
+        /// </remarks>
         public async Task<string> PostCodeAsync(string code, string lang, int memory_limit, int time_limit, string input)
         {
             try

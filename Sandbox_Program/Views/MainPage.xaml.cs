@@ -22,7 +22,7 @@ namespace Sandbox_Program
         public MainPage()
         {
             this.InitializeComponent();
-            DataContext = new MainPageViewModel();//TODO fix it
+            DataContext = new MainPageViewModel();
         }
         private void ToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
         {
