@@ -117,13 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CodeBox.PlaceholderText" xml:space="preserve">
+    <value>Впишіть код сюди...</value>
+  </data>
   <data name="HubControl.Header" xml:space="preserve">
-    <value>UWP Демо локалізація</value>
+    <value>UWP Sandbox додаток</value>
   </data>
-  <data name="themeSwitch.OffContent" xml:space="preserve">
-    <value>Темна тема</value>
+  <data name="Language.Header" xml:space="preserve">
+    <value>Оберіть мову програмування:</value>
   </data>
-  <data name="themeSwitch.OnContent" xml:space="preserve">
-    <value>Світла тема</value>
+  <data name="Memory.Header" xml:space="preserve">
+    <value>Оберіть ліміт памяті:</value>
+  </data>
+  <data name="Send.Content" xml:space="preserve">
+    <value>Відправити</value>
+  </data>
+  <data name="Status.Text" xml:space="preserve">
+    <value>Статус компіляції:</value>
+  </data>
+  <data name="Task.Header" xml:space="preserve">
+    <value>Оберіть завдання</value>
+  </data>
+  <data name="Theme.OffContent" xml:space="preserve">
+    <value>Темна</value>
+  </data>
+  <data name="Theme.OnContent" xml:space="preserve">
+    <value>Світла</value>
+  </data>
+  <data name="Time.Header" xml:space="preserve">
+    <value>Оберіть ліміт часу:</value>
   </data>
 </root>

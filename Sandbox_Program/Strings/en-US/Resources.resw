@@ -117,13 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="HubControl.Header" xml:space="preserve">
-    <value>UWP Localisation Demo</value>
+  <data name="CodeBox.PlaceholderText" xml:space="preserve">
+    <value>Type your code here...</value>
   </data>
-  <data name="themeSwitch.OffContent" xml:space="preserve">
+  <data name="HubControl.Header" xml:space="preserve">
+    <value>UWP Sandbox app</value>
+  </data>
+  <data name="Language.Header" xml:space="preserve">
+    <value>Enter language:</value>
+  </data>
+  <data name="Memory.Header" xml:space="preserve">
+    <value>Enter memory limit:</value>
+  </data>
+  <data name="Send.Content" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Status.Text" xml:space="preserve">
+    <value>Compile status</value>
+  </data>
+  <data name="Task.Header" xml:space="preserve">
+    <value>Choose Task</value>
+  </data>
+  <data name="Theme.OffContent" xml:space="preserve">
     <value>Dark</value>
   </data>
-  <data name="themeSwitch.OnContent" xml:space="preserve">
+  <data name="Theme.OnContent" xml:space="preserve">
     <value>Light</value>
+  </data>
+  <data name="Time.Header" xml:space="preserve">
+    <value>Enter time limit:</value>
   </data>
 </root>

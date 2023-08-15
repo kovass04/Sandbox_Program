@@ -97,21 +97,32 @@ namespace Sandbox_Program.ViewModels
         /// </summary>
         private async void ExecuteSendCommand()
         {
+            //TODO Checks and errors
+            
             PostModel postModel = JsonConvert.DeserializeObject<PostModel>(await _services.PostCodeAsync(
                 SelectedOption.BaseCode, SelectedOption.Code, MemoryLimit, TimeLimit, SelectedProblem.SampleInput));
-
+            OutputText = postModel.result.compile_status;
+            
             StatusModel statusModel = JsonConvert.DeserializeObject<StatusModel>(await _services.GetStatusAsync(postModel.he_id));
+            OutputText = statusModel.result.compile_status;
             string result = await _services.GetResultAsync(statusModel.result.run_status.output);
 
             //TODO Complete the processing of the result
 
             if (result == SelectedProblem.SampleOutput + "\n") 
             {
-                OutputText = "YOU WIN \n" + SelectedProblem.SampleOutput;
+                OutputText = "Result \n" + result;
             }
             else
             {
-                OutputText = statusModel.request_status.code;
+                if (statusModel.request_status.code == "REQUEST_COMPLETED" || statusModel.request_status.code == "CODE_COMPILED") 
+                {
+                    OutputText = "The answer is not correct or you code is bad\nOutput : " + result;
+                }
+                else
+                {
+                    OutputText = statusModel.request_status.code;
+                }
             }
         }
         #endregion
