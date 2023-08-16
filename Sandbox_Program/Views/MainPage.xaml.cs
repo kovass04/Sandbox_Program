@@ -35,12 +35,9 @@ namespace Sandbox_Program
         private void LoadThemeFromSettings()
         {
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            if (localSettings.Values.TryGetValue(ThemeKey, out var themeValue))
+            if (localSettings.Values.TryGetValue(ThemeKey, out var themeValue) && Enum.TryParse(themeValue.ToString(), out ElementTheme theme))
             {
-                if (Enum.TryParse(themeValue.ToString(), out ElementTheme theme))
-                {
-                    RequestedTheme = theme;
-                }
+                RequestedTheme = theme;
             }
         }
 
