@@ -97,7 +97,6 @@ namespace Sandbox_Program.ViewModels
         /// </summary>
         private async void ExecuteSendCommand()
         {
-            //TODO Checks and errors
             if (SelectedOption == null || string.IsNullOrWhiteSpace(SelectedOption.BaseCode) ||
                 string.IsNullOrWhiteSpace(SelectedOption.Code) || MemoryLimit <= 0 || TimeLimit <= 0 ||
                 SelectedProblem == null)

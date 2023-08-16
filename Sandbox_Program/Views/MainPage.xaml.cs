@@ -19,16 +19,35 @@ namespace Sandbox_Program
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private const string ThemeKey = "AppTheme";
         public MainPage()
         {
             this.InitializeComponent();
             DataContext = new MainPageViewModel();
+            LoadThemeFromSettings();
         }
         private void ToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
         {
-            RequestedTheme = Toggle.IsOn
-                ? ElementTheme.Light
-                : ElementTheme.Dark;
+            RequestedTheme = Toggle.IsOn ? ElementTheme.Light : ElementTheme.Dark;
+            SaveThemeToSettings();
+        }
+
+        private void LoadThemeFromSettings()
+        {
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (localSettings.Values.TryGetValue(ThemeKey, out var themeValue))
+            {
+                if (Enum.TryParse(themeValue.ToString(), out ElementTheme theme))
+                {
+                    RequestedTheme = theme;
+                }
+            }
+        }
+
+        private void SaveThemeToSettings()
+        {
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values[ThemeKey] = RequestedTheme.ToString();
         }
     }
 }
