@@ -98,7 +98,15 @@ namespace Sandbox_Program.ViewModels
         private async void ExecuteSendCommand()
         {
             //TODO Checks and errors
-            
+            if (SelectedOption == null || string.IsNullOrWhiteSpace(SelectedOption.BaseCode) ||
+                string.IsNullOrWhiteSpace(SelectedOption.Code) || MemoryLimit <= 0 || TimeLimit <= 0 ||
+                SelectedProblem == null)
+            {
+                // Display an error message or handle invalid input
+                OutputText = "Error one of the parameters is empty";
+                return;
+            }
+
             PostModel postModel = JsonConvert.DeserializeObject<PostModel>(await _services.PostCodeAsync(
                 SelectedOption.BaseCode, SelectedOption.Code, MemoryLimit, TimeLimit, SelectedProblem.SampleInput));
             OutputText = postModel.result.compile_status;
