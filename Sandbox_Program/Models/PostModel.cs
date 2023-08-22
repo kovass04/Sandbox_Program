@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Sandbox_Program.Models
 {
+    [DataContract]
     public class PostModel
     {
-        public string context { get; set; }
-        public PostResult result { get; set; }
-        public string he_id { get; set; }
-        public string status_update_url { get; set; }
-        public RequestStatus request_status { get; set; }
+        [DataMember(Name = "context")]
+        public string Context { get; set; }
+
+        [DataMember(Name = "result")]
+        public PostResult Result { get; set; }
+
+        [DataMember(Name = "he_id")]
+        public string HeId { get; set; }
+
+        [DataMember(Name = "status_update_url")]
+        public string StatusUpdateUrl { get; set; }
+
+        [DataMember(Name = "request_status")]
+        public RequestStatus RequestStatus { get; set; }
     }
 }

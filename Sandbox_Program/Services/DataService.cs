@@ -12,14 +12,19 @@ namespace Sandbox_Program.Services
     public class DataService
     {
         private readonly HttpClient _httpClient;
-        private const string BaseApiUrl = "https://api.hackerearth.com/v4/partner/code-evaluation/submissions/";
+        private readonly string _key;
+        #pragma warning disable S1075 // URIs should not be hardcoded
+        private const string _baseApiUrl = "https://api.hackerearth.com/v4/partner/code-evaluation/submissions/";
+
+
         /// <summary>
         /// Initializes a new instance of the DataService class with the base API address.
         /// </summary>
         public DataService()
         {
+            _key = ReadKeyFromFile();
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(BaseApiUrl);
+            _httpClient.BaseAddress = new Uri(_baseApiUrl);
         }
 
         /// <summary>
@@ -36,7 +41,7 @@ namespace Sandbox_Program.Services
         /// using the specified programming language, memory limit, time limit, and input data.
         /// It returns the result of the code execution or an empty string in case of an error.
         /// </remarks>
-        public async Task<string> PostCodeAsync(string code, string lang, int memory_limit, int time_limit, string input)
+        public async Task<string> PostCodeAsync(string code, string lang, int memoryLimit, int timeLimit, string input)
         {
             try
             {
@@ -48,14 +53,14 @@ namespace Sandbox_Program.Services
                     Headers =
                 {
                     // Set the client-secret header using the key read from the file
-                    { "client-secret", $"{ReadKeyFromFile()}" },
+                    { "client-secret", $"{_key}" },
                 },
                     Content = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
                     { "lang", lang },
                     { "source", code },
-                    { "time_limit", $"{time_limit}" },
-                    { "memory_limit", $"{memory_limit}" },
+                    { "time_limit", $"{memoryLimit}" },
+                    { "memory_limit", $"{timeLimit}" },
                     { "input", input },
                     { "callback","https://client.com/callback/" }
                 }),
@@ -85,7 +90,7 @@ namespace Sandbox_Program.Services
         /// </summary>
         /// <param name="he_id">The unique identifier (he_id) associated with the submitted code evaluation.</param>
         /// <returns>A string containing the response body received from the API, representing the evaluation status.</returns>
-        public async Task<string> GetStatusAsync(string he_id) 
+        public async Task<string> GetStatusAsync(string heId) 
         {
             try
             {
@@ -93,11 +98,11 @@ namespace Sandbox_Program.Services
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri(_httpClient.BaseAddress + he_id),
+                    RequestUri = new Uri(_httpClient.BaseAddress + heId),
                     Headers =
                 {
                     // Set the client-secret header using the key read from the file
-                    { "client-secret", $"{ReadKeyFromFile()}" },
+                    { "client-secret", $"{_key}" },
                 }
                 };
 
@@ -133,7 +138,7 @@ namespace Sandbox_Program.Services
                 string content = null;
 
                 // Send an HTTP GET request to the specified URL
-                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                HttpResponseMessage response = await _httpClient.GetAsync(requestUri: url);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -167,14 +172,13 @@ namespace Sandbox_Program.Services
                 string filePath = "key.txt";
 
                 // Read the content of the file into a string
-                key = File.ReadAllText(filePath);
+                key = File.ReadAllText(path: filePath);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Помилка: " + ex.Message);
             }
 
-            // TODO rewrite the method or add error notification
             return key;
         }
     }

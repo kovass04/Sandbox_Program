@@ -37,6 +37,7 @@ namespace Sandbox_Program.ViewModels
 
         private void InitializeLanguageOptions()
         {
+            //TODO rewrite all BaseCode because not all of them are correct for API. Need to put it in the files
             LanguageOptions = new ObservableCollection<LanguageOption>
                 {
                     new LanguageOption { Code = "C",               Name = "C" ,                 BaseCode = "#include <stdio.h>\r\n\r\nint main(){\r\n\tint num;\r\n\tscanf(\"%d\", &num);              \t             \r\n\tprintf(\"Input number is %d.\\n\", num);      \r\n}"},

@@ -1,15 +1,7 @@
 ﻿using System;
-using System.IO;
 using Windows.UI.Xaml.Controls;
-using Sandbox_Program.Services;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Text;
-using Newtonsoft.Json;
-using Sandbox_Program.Models;
 using Sandbox_Program.ViewModels;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls.Primitives;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Sandbox_Program
@@ -19,7 +11,7 @@ namespace Sandbox_Program
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private const string ThemeKey = "AppTheme";
+        private const string _themeKey = "AppTheme";
         public MainPage()
         {
             this.InitializeComponent();
@@ -35,7 +27,7 @@ namespace Sandbox_Program
         private void LoadThemeFromSettings()
         {
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            if (localSettings.Values.TryGetValue(ThemeKey, out var themeValue) && Enum.TryParse(themeValue.ToString(), out ElementTheme theme))
+            if (localSettings.Values.TryGetValue(_themeKey, out var themeValue) && Enum.TryParse(themeValue.ToString(), out ElementTheme theme))
             {
                 RequestedTheme = theme;
             }
@@ -44,7 +36,7 @@ namespace Sandbox_Program
         private void SaveThemeToSettings()
         {
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values[ThemeKey] = RequestedTheme.ToString();
+            localSettings.Values[_themeKey] = RequestedTheme.ToString();
         }
     }
 }

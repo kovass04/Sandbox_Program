@@ -1,37 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Sandbox_Program.Models
 {
+    [DataContract]
     public class CompilationResult
     {
-        public string compile_status { get; set; }
+        [DataMember(Name = "compile_status")]
+        public string CompileStatus { get; set; }
     }
     public class PostResult : CompilationResult
     {
-        public ExecutionStatusBase run_status { get; set; }
+        [DataMember(Name = "run_status")]
+        public ExecutionStatusBase RunStatus { get; set; }
     }
     public class StatusResult : CompilationResult
     {
-        public ExecutionStatus run_status { get; set; }
+        [DataMember(Name = "run_status")]
+        public ExecutionStatus RunStatus { get; set; }
     }
     public class ExecutionStatusBase
     {
-        public string status { get; set; }
+        [DataMember(Name = "status")]
+        public string Status { get; set; }
     }
     public class ExecutionStatus : ExecutionStatusBase
     {
-        public string output { get; set; }
-        public string status_detail { get; set; }
-        public float time_used { get; set; }
-        public int memory_used { get; set; }
+        [DataMember(Name = "output")]
+        public string Output { get; set; }
+
+        [DataMember(Name = "status_detail")]
+        public string StatusDetail { get; set; }
+
+        [DataMember(Name = "time_used")]
+        public float TimeUsed { get; set; }
+
+        [DataMember(Name = "memory_used")]
+        public int MemoryUsed { get; set; }
     }
     public class RequestStatus
     {
-        public string code { get; set; }
-        public string message { get; set; }
+        [DataMember(Name = "code")]
+        public string Code { get; set; }
+
+        [DataMember(Name = "message")]
+        public string Message { get; set; }
     }
 }

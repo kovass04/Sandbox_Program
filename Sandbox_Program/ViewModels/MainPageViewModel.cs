@@ -97,8 +97,8 @@ namespace Sandbox_Program.ViewModels
         /// </summary>
         private async void ExecuteSendCommand()
         {
-            if (SelectedOption == null || string.IsNullOrWhiteSpace(SelectedOption.BaseCode) ||
-                string.IsNullOrWhiteSpace(SelectedOption.Code) || MemoryLimit <= 0 || TimeLimit <= 0 ||
+            if (SelectedOption == null || string.IsNullOrWhiteSpace(value: SelectedOption.BaseCode) ||
+                string.IsNullOrWhiteSpace(value: SelectedOption.Code) || MemoryLimit <= 0 || TimeLimit <= 0 ||
                 SelectedProblem == null)
             {
                 // Display an error message or handle invalid input
@@ -107,12 +107,12 @@ namespace Sandbox_Program.ViewModels
             }
 
             PostModel postModel = JsonConvert.DeserializeObject<PostModel>(await _services.PostCodeAsync(
-                SelectedOption.BaseCode, SelectedOption.Code, MemoryLimit, TimeLimit, SelectedProblem.SampleInput));
-            OutputText = postModel.result.compile_status;
+                code: SelectedOption.BaseCode, lang: SelectedOption.Code, memoryLimit: MemoryLimit, timeLimit: TimeLimit, input: SelectedProblem.SampleInput));
+            OutputText = postModel.Result.CompileStatus;
             
-            StatusModel statusModel = JsonConvert.DeserializeObject<StatusModel>(await _services.GetStatusAsync(postModel.he_id));
-            OutputText = statusModel.result.compile_status;
-            string result = await _services.GetResultAsync(statusModel.result.run_status.output);
+            StatusModel statusModel = JsonConvert.DeserializeObject<StatusModel>(await _services.GetStatusAsync(heId: postModel.HeId));
+            OutputText = statusModel.Result.CompileStatus;
+            string result = await _services.GetResultAsync(url: statusModel.Result.RunStatus.Output);
 
             //TODO Complete the processing of the result
 
@@ -122,13 +122,13 @@ namespace Sandbox_Program.ViewModels
             }
             else
             {
-                if (statusModel.request_status.code == "REQUEST_COMPLETED" || statusModel.request_status.code == "CODE_COMPILED") 
+                if (statusModel.RequestStatus.Code == "REQUEST_COMPLETED" || statusModel.RequestStatus.Code == "CODE_COMPILED") 
                 {
-                    OutputText = "The answer is not correct or you code is bad\nOutput : " + result;
+                    OutputText = $"Status: {statusModel.Result.CompileStatus}\nOutput :{result}";
                 }
                 else
                 {
-                    OutputText = statusModel.request_status.code;
+                    OutputText = $"Status: {statusModel.Result.CompileStatus}\nOutput :{statusModel.RequestStatus.Code}";
                 }
             }
         }

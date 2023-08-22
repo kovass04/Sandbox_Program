@@ -4,6 +4,19 @@
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
             <SolidColorBrush x:Key="ThemeBackgroundBrush">Black</SolidColorBrush>
+            <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="Black" />
+            <SolidColorBrush x:Key="ButtonForegroundBrush" Color="White" />
+            <SolidColorBrush x:Key="ButtonBorderBrush" Color="White" />
+            <SolidColorBrush x:Key="ButtonContentBrush" Color="White" />
+            <CornerRadius x:Key="ButtonCornerRadius">5</CornerRadius>
+            <SolidColorBrush x:Key="TextBlockForegroundBrush" Color="White" />
+            <SolidColorBrush x:Key="ComboBoxBackgroundBrush" Color="Black" />
+            <SolidColorBrush x:Key="ComboBoxForegroundBrush" Color="White" />
+            <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="White" />
+            <SolidColorBrush x:Key="NumberBoxBackgroundBrush" Color="White" />
+            <SolidColorBrush x:Key="NumberBoxForegroundBrush" Color="White" />
+            <SolidColorBrush x:Key="ToggleSwitchOffBrush" Color="White" />
+            <SolidColorBrush x:Key="ToggleSwitchOnBrush" Color="White" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">

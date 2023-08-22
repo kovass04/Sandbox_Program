@@ -24,7 +24,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Hub x:Uid="HubControl" Grid.ColumnSpan="2" Style="{StaticResource TextBlockStyle}">
+        <Hub x:Uid="HubControl" Grid.ColumnSpan="2">
             <Hub.Header>
                 <TextBlock Text="Localization Demo" />
             </Hub.Header>
