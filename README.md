@@ -27,6 +27,8 @@ To install and set up the Sandbox_Program project, follow these steps:
 
 ## Usage
 
+Currently, the app works best in full screen mode.
+
 To use the Sandbox_Program application effectively, follow these steps:
 
 1. Launch the application.
@@ -37,3 +39,13 @@ To use the Sandbox_Program application effectively, follow these steps:
 6. Click the "Send" button to submit your code for evaluation.
 
 Upon completion, you will receive a message indicating whether there was an error or displaying the program's output.
+
+## Future Development
+
+We have exciting plans for the future development of Sandbox_Program:
+
+- **Improved Design:** 
+
+- **Screen Resolution and Orientation Support:** 
+
+- **Optimized Full-Screen Mode:** 
