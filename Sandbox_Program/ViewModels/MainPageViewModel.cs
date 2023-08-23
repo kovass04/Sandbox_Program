@@ -2,7 +2,13 @@
 using Newtonsoft.Json;
 using Sandbox_Program.Models;
 using Sandbox_Program.Services;
+using System.Collections.Generic;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.Storage;
 
 
 namespace Sandbox_Program.ViewModels
@@ -105,6 +111,7 @@ namespace Sandbox_Program.ViewModels
                 OutputText = "Error one of the parameters is empty";
                 return;
             }
+            //TODO take out the code
 
             PostModel postModel = JsonConvert.DeserializeObject<PostModel>(await _services.PostCodeAsync(
                 code: SelectedOption.BaseCode, lang: SelectedOption.Code, memoryLimit: MemoryLimit, timeLimit: TimeLimit, input: SelectedProblem.SampleInput));
@@ -114,7 +121,7 @@ namespace Sandbox_Program.ViewModels
             OutputText = statusModel.Result.CompileStatus;
             string result = await _services.GetResultAsync(url: statusModel.Result.RunStatus.Output);
 
-            //TODO Complete the processing of the result
+            //TODO Complete the processing of the result and errors
 
             if (result == SelectedProblem.SampleOutput + "\n") 
             {

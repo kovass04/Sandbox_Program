@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Hello World",
+    "SampleOutput": "Hello World",
+    "SampleInput": "",
+    "Detail": "Write a code, output \"Hello World\""
+  },
+  {
+    "Name": "First problem",
+    "SampleOutput": "4",
+    "SampleInput": "4",
+    "Detail": "Write a code that takes a value and prints it"
+  },
+  {
+    "Name": "Second problem",
+    "SampleOutput": "6",
+    "SampleInput": "4",
+    "Detail": "Write a code that takes a value in X and use this formula to output X+2"
+  }
+]

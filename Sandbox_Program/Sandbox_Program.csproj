@@ -183,12 +183,17 @@
       <Version>4.3.4</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Data\LanguageOptions.json" />
+  </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\uk-UA\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Problems.json" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
