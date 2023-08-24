@@ -124,6 +124,7 @@
     <Compile Include="Models\Problem.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\Share.cs" />
+    <Compile Include="ViewModels\ThemeSettingsModel.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />

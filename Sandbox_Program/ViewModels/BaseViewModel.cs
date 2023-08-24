@@ -36,9 +36,9 @@ namespace Sandbox_Program.ViewModels
         public ObservableCollection<Problem> Problems { get; set; }
         public ObservableCollection<LanguageOption> LanguageOptions { get; set; }
         private async Task InitializeProblemsAsync() => Problems =
-            new ObservableCollection<Problem>(await DeserializeJsonAsync<List<Problem>>("Problems.json"));
+            new ObservableCollection<Problem>(await DeserializeJsonAsync<List<Problem>>(fileName: "Problems.json"));
         private async Task InitializeLanguageOptionsAsync() => LanguageOptions = 
-            new ObservableCollection<LanguageOption>(await DeserializeJsonAsync<List<LanguageOption>>("LanguageOptions.json"));
+            new ObservableCollection<LanguageOption>(await DeserializeJsonAsync<List<LanguageOption>>(fileName: "LanguageOptions.json"));
 
         public async Task<T> DeserializeJsonAsync<T>(string fileName)
         {

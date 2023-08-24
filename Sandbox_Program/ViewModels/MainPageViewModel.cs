@@ -2,13 +2,9 @@
 using Newtonsoft.Json;
 using Sandbox_Program.Models;
 using Sandbox_Program.Services;
-using System.Collections.Generic;
-using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Windows.Input;
-using Windows.Storage;
+using Windows.UI.Xaml;
 
 
 namespace Sandbox_Program.ViewModels
@@ -92,6 +88,9 @@ namespace Sandbox_Program.ViewModels
         {
             _services = new DataService();
             SendCommand = new RelayCommand(ExecuteSendCommand);
+            ThemeSettingsModel themeSettingsModel = new ThemeSettingsModel();
+            CurrentTheme = themeSettingsModel.LoadTheme();
+            ToggleThemeCommand = new RelayCommand(ToggleTheme);
         }
 
         #endregion
@@ -140,5 +139,40 @@ namespace Sandbox_Program.ViewModels
             }
         }
         #endregion
+
+        //TODO put it in ThemeSettingsModel
+
+        private ElementTheme _currentTheme;
+        public ElementTheme CurrentTheme
+        {
+            get { return _currentTheme; }
+            set
+            {
+                if (_currentTheme != value)
+                {
+                    _currentTheme = value;
+                    OnPropertyChanged(nameof(CurrentTheme));
+                    SaveThemeToSettings(value);
+                }
+            }
+        }
+
+        private void SaveThemeToSettings(ElementTheme theme)
+        {
+            ThemeSettingsModel themeSettingsModel = new ThemeSettingsModel();
+            themeSettingsModel.SaveTheme(theme);
+        }
+
+        public ICommand ToggleThemeCommand { get; private set; }
+
+        public bool IsLightTheme
+        {
+            get { return CurrentTheme == ElementTheme.Light; }
+            set { CurrentTheme = value ? ElementTheme.Light : ElementTheme.Dark; }
+        }
+        private void ToggleTheme()
+        {
+            IsLightTheme = !IsLightTheme;
+        }
     }
 }

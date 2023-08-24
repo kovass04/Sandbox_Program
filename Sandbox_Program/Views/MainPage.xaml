@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:controls="using:Microsoft.UI.Xaml.Controls">
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    RequestedTheme="{Binding CurrentTheme, Mode=TwoWay}">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -34,7 +35,7 @@
             <controls:NumberBox Style="{StaticResource NumberBoxStyle}" x:Uid="Time" Header="Enter time limit:" Value="{Binding TimeLimit, Mode=TwoWay}" SpinButtonPlacementMode="Compact" SmallChange="1" LargeChange="1" Margin="9,0,0,0"/>
             <controls:NumberBox Style="{StaticResource NumberBoxStyle}" x:Uid="Memory" Header="Enter memory limit:" Value="{Binding MemoryLimit, Mode=TwoWay}" SpinButtonPlacementMode="Compact" SmallChange="1024" LargeChange="1024" Margin="10,0,0,0" Width="150"/>
             <ComboBox Style="{StaticResource ComboBoxStyle}" x:Uid="Language" Header="Enter :" ItemsSource="{Binding LanguageOptions}" DisplayMemberPath="Name" SelectedValue="{Binding SelectedOption, Mode=TwoWay}" Width="246" Margin="10,0,0,0"/>
-            <ToggleSwitch Style="{StaticResource ToggleSwitchStyle}" x:Uid="Theme" OffContent="Dark" OnContent="Light" x:Name="Toggle" Toggled="ToggleSwitch_OnToggled" Margin="10,0,0,0"/>
+            <ToggleSwitch Style="{StaticResource ToggleSwitchStyle}" x:Uid="Theme" OffContent="Dark" OnContent="Light" x:Name="Toggle" IsOn="{Binding IsLightTheme, Mode=TwoWay}"  Margin="10,0,0,0"/>
         </StackPanel>
 
         <TextBox x:Uid="CodeBox" Text="{Binding SelectedOption.BaseCode, Mode=TwoWay}" FontSize="32"
